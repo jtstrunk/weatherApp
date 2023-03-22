@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Application</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <div id="content">
+        <!-- <p id="title">5 Day Weather Forecast</p> -->
+        <div id="searchBar">
+            <input type="text" placeholder="City" id="cityInp">
+            <input type="text" placeholder="State" id="stateInp">
+            <button id="search">Search</button>
+        </div>
+
+        <div id="main" class="Hide">
+
+            <div id="currentConditions" class="card">
+                <p id="selectedCity"></p>
+                <div id="current">
+                    <div>
+                        <p id="actualTemp"></p>
+                        <p id="currentlyFeels"></p>
+                    </div>
+                    <div>
+                        <img id="specialIcon" class="resize" src="rain.png">
+                        <p id="weather"></p>
+                    </div>
+                </div>
+    
+            </div>
+
+            <div class="card">
+                <div class="left">
+                    <p class="day"></p>
+                    <p class="date"></p>
+                    <p class="high"></p>
+                    <p class="low"></p>
+                    <p class="feels"></p>
+                </div>
+                <div class="iconSide">
+                    <img id="day1" class="icon resize" src="">
+                    <p class="temp"></p>
+                </div>
+
+            </div>
+            <div class="card">
+                <div class="left">
+                    <p class="day"></p>
+                    <p class="date"></p>
+                    
+                    <p class="high"></p>
+                    <p class="low"></p>
+                    <p class="feels"></p>
+                </div>
+                <div class="iconSide">
+                    <img id="day2" class="icon resize" src="">
+                    <p class="temp"></p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="left">
+                    <p class="day"></p>
+                    <p class="date"></p>
+                    
+                    <p class="high"></p>
+                    <p class="low"></p>
+                    <p class="feels"></p>
+                </div>
+                <div class="iconSide">
+                    <img id="day3" class="icon resize" src="">
+                    <p class="temp"></p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="left">
+                    <p class="day"></p>
+                    <p class="date"></p>
+                    <p class="high"></p>
+                    <p class="low"></p>
+                    <p class="feels"></p>
+                </div>
+                <div class="iconSide">
+                    <img id="day4" class="icon resize" src="">
+                    <p class="temp"></p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="left"> 
+                    <p class="day"></p>
+                    <p class="date"></p>
+                    
+                    <p class="high"></p>
+                    <p class="low"></p>
+                    <p class="feels"></p>
+                </div>
+                <div class="iconSide">
+                    <img id="day5" class="icon resize" src="">
+                    <p class="temp"></p>
+                </div>
+            </div>
+            <button id="reset">Reset</button>
+            
+        </div>
+    </div>
+</body>
+</html>

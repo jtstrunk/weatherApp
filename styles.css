@@ -1,0 +1,141 @@
+body{
+    background-color:#30949d
+}
+
+.Hide{
+    display: none !important;
+}
+
+#content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#title{
+    color: white;
+    font-size: 28px;
+}
+
+#search{
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+#cityInp {
+    width: 130px;
+}
+
+#stateInp {
+    width: 100px;
+}
+
+input {
+    padding: 3px;
+}
+
+#main{
+    margin-top: 15px;
+    width: 610px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#main p{
+    color: white;
+    margin-left: 10px;
+    margin-right: 10px;
+    justify-content: center;
+}
+
+#searchBar{
+    background-color: rgb(0,0,0,0.6);
+    padding: 8px;
+    border-radius: 8px;
+}
+
+#currentConditions {
+    display: flex;
+    flex-direction: column;
+}
+
+.card{
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(0,0,0,0.6);
+    border-radius: 8px;
+    margin: 2px;
+    width: 300px;
+}
+
+img{
+    margin-left: 37px;
+}
+
+.date{
+    font-size: 13px !important;
+    margin-top: 5px;
+}
+
+.iconSide {
+    margin-top: 5px;
+    
+}
+
+.temp {
+    font-size: 15px;
+    width: 110px;
+    margin-left: 31px !important;
+}
+
+.resize {
+    width: 80px;
+    height: 80px;
+}
+
+.day{
+    margin-bottom: 5px;
+}
+
+.feels{
+    width: 120px;
+    margin-right: 0px;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.high{
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.low{
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.left {
+    width: 120px;
+    margin-right: 5px;
+}
+
+#weather {
+    margin-top: 0px;
+    margin-left: 30px !important;
+}
+
+#current{
+    display: flex;
+    flex-direction: row;
+}
+
+#reset {
+    margin-left: 280px;
+    margin-top: 5px;
+}
