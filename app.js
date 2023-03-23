@@ -14,17 +14,14 @@ resetBTN.addEventListener('click', () =>{
 searchBTN.addEventListener('click', () => {
     mainContent.classList.remove("Hide");
     let city = cityInput.value;
-    console.log(city);
     let state = stateInput.value;
-    console.log(state);
-
     fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/forecast?locations=${city},${state}&iconSet=icons1&aggregateHours=24&forecastDays=5&unitGroup=us&shortColumnNames=false&contentType=json&key=95VXDF2FPLW35MCG9BJ7VZ6WC`, {
   method: 'GET', 
   headers: { },
 }).then((response) => response.json())
 .then((data) => {
-    console.log(data)
 
+    error.classList.add("Hide");
     let city = cityInput.value;
     let selectedCity = document.querySelector("#selectedCity");
     let actualTemp = document.querySelector("#actualTemp");
@@ -58,11 +55,9 @@ searchBTN.addEventListener('click', () => {
 
         let high = (data.locations[Object.keys(data.locations)].values[i].maxt);
         highs[i].innerText = "High: " + high + "°F";
-        console.log("new high");
 
         let low = (data.locations[Object.keys(data.locations)].values[i].mint);
         lows[i].innerText = "Low: " + low + "°F";
-        console.log("new low");
 
         let feel = (data.locations[Object.keys(data.locations)].values[i].windchill);
         if(!feel === null){
@@ -96,6 +91,11 @@ searchBTN.addEventListener('click', () => {
 
     }
 
+})
+.catch(() => {
+    let error = document.querySelector("#error");
+    mainContent.classList.add("Hide");
+    error.classList.remove("Hide");
 });
 })
 

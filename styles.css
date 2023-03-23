@@ -20,6 +20,11 @@ body{
     margin-bottom: 8px;
 }
 
+#error{
+    font-size: 24px;
+    color: white;
+}
+
 #search{
     padding-top: 3px;
     padding-bottom: 3px;
