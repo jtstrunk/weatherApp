@@ -16,6 +16,8 @@ body{
 #title{
     color: white;
     font-size: 28px;
+    margin-top: 5px;
+    margin-bottom: 8px;
 }
 
 #search{
