@@ -6,13 +6,15 @@ let mainContent = document.querySelector("#main");
 let resetBTN = document.querySelector("#reset");
 
 resetBTN.addEventListener('click', () =>{
+    let error = document.querySelector("#error");
     mainContent.classList.add("Hide");
+    //error.classList.add("Hide");
     cityInput.value = '';
     stateInput.value = '';
 })
 
 searchBTN.addEventListener('click', () => {
-    mainContent.classList.remove("Hide");
+    
     let city = cityInput.value;
     let state = stateInput.value;
     fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/forecast?locations=${city},${state}&iconSet=icons1&aggregateHours=24&forecastDays=5&unitGroup=us&shortColumnNames=false&contentType=json&key=95VXDF2FPLW35MCG9BJ7VZ6WC`, {
@@ -20,25 +22,29 @@ searchBTN.addEventListener('click', () => {
   headers: { },
 }).then((response) => response.json())
 .then((data) => {
-
+    let error = document.querySelector("#error");
+    console.log(data);
+    mainContent.classList.remove("Hide");
     error.classList.add("Hide");
     let city = cityInput.value;
     let selectedCity = document.querySelector("#selectedCity");
     let actualTemp = document.querySelector("#actualTemp");
     let currentlyFeels = document.querySelector("#currentlyFeels");
+
+    let locationValues = data.locations[Object.keys(data.locations)].values.slice(0,5);
     
-    selectedCity.innerText = city + "'s Current Weather";
+    selectedCity.innerText = data.locations[Object.keys(data.locations)].address + "'s Current Weather";
     actualTemp.innerText = "Temprature " + data.locations[Object.keys(data.locations)].currentConditions.temp + "°F";
     let wind = data.locations[Object.keys(data.locations)].currentConditions.windchill;
 
     if(!wind === null){
         currentlyFeels.innerText = "Feels Like " + wind + "°F";
     } else{
-        currentlyFeels.innerText = "Feels Like " + data.locations[Object.keys(data.locations)].values[0].temp + "°F";
+        currentlyFeels.innerText = "Feels Like " + data.locations[Object.keys(data.locations)].currentConditions.temp + "°F";
     }
 
     let weather = document.querySelector("#weather");
-    weather.innerText = data.locations[Object.keys(data.locations)].values[0].conditions;
+    weather.innerText = data.locations[Object.keys(data.locations)].currentConditions.icon;
 
     let dates = document.querySelectorAll(".date");
     let highs = document.querySelectorAll(".high");
@@ -47,48 +53,46 @@ searchBTN.addEventListener('click', () => {
     let temps = document.querySelectorAll(".temp");
     let days = document.querySelectorAll(".day");
 
-
-    for(let i = 0; i < data.locations[Object.keys(data.locations)].values.length; i++){
-        let date = (data.locations[Object.keys(data.locations)].values[i].datetimeStr);
+    for(let i = 0; i < locationValues.length; i++){
+        let date = locationValues[i].datetimeStr;
         let newDate = date.substring(0,10);
         dates[i].innerText = newDate;
 
-        let high = (data.locations[Object.keys(data.locations)].values[i].maxt);
+        let high = locationValues[i].maxt;
         highs[i].innerText = "High: " + high + "°F";
 
-        let low = (data.locations[Object.keys(data.locations)].values[i].mint);
+        let low = locationValues[i].mint;
         lows[i].innerText = "Low: " + low + "°F";
 
-        let feel = (data.locations[Object.keys(data.locations)].values[i].windchill);
+        let feel = locationValues[i].windchill;
         if(!feel === null){
             feels[i].innerText = "Feels like: " + feel + "°F";
         }
         else{
-            let temp = (data.locations[Object.keys(data.locations)].values[i].temp);
+            let temp = locationValues[i].temp;
             feels[i].innerText = "Feels like: " + temp + "°F";
         }
         
-        let temp = (data.locations[Object.keys(data.locations)].values[i].temp);
-        let condition = (data.locations[Object.keys(data.locations)].values[i].conditions);
+        let temp = locationValues[i].temp;
+        let condition = locationValues[i].conditions;
         temps[i].innerText = condition + " and " + temp + "°F";
 
-        let day = (data.locations[Object.keys(data.locations)].values[i].datetimeStr);
+        let day = locationValues[i].datetimeStr;
         let newday = getDayName(day, "en-US");
         days[i].innerText = newday;
     }
 
     let validIconNames = ["rain", "wind", "fog", "snow", "partly-cloudy-day", "partly-cloudy-night", "clear-day", "clear-night"];
 
-    for (let i = 0; i < data.locations[Object.keys(data.locations)].values.length; i++) {
+    for (let i = 0; i < locationValues.length; i++) {
         let day = document.querySelector(`#day${i + 1}`);
-        let icon = (data.locations[Object.keys(data.locations)].values[i].icon);
+        let icon = locationValues[i].icon;
 
         if (validIconNames.includes(icon)) {
             day.src = `${icon}.png`;
         } else {
             day.src = "partly-cloudy-day.png";
         }
-
     }
 
 })
